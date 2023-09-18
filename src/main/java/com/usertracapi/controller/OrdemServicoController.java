@@ -78,7 +78,7 @@ public class OrdemServicoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarcOrdemServicoPeloId(@PathVariable Long id) {
+    public ResponseEntity<String> deletarcOrdemServicoPeloId(@PathVariable("id") Long id) {
         Optional<OrdemServico> ordemExistente = ordemServicoRepository.findById(id);
         if (ordemExistente.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
