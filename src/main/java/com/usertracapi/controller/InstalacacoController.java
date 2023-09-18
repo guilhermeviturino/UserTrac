@@ -74,7 +74,7 @@ public class InstalacacoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarcClientePeloId(@PathVariable Long id) {
+    public ResponseEntity<String> deletarcClientePeloId(@PathVariable("id") Long id) {
         Optional<Instalacao> instalacaoExistente = instalacaoRepository.findById(id);
 
         if (instalacaoExistente.isEmpty()) {
