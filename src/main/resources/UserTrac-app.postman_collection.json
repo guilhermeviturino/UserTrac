@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "7a6d743e-b7f0-4b21-9a4b-10df8638ea10",
+		"name": "UserTrac-app",
+		"description": "Funcionalidades do sitema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28281980"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/clientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Girleide\",\r\n    \"sobrenome\": \"Alves da silva\",\r\n    \"cpf\": \"654.321.123-45\",\r\n    \"dataNascimento\": \"22/08/1995\",\r\n    \"telefone\": \"8199871-2345\",\r\n    \"email\":\"girleide@gmail.com\",\r\n    \"endereco\": {\r\n        \"cep\": \"50.620-160\",\r\n        \"logradouro\": \"Rua Joaqui alheiros\",\r\n        \"numero\": \"507\",\r\n        \"complemento\": \"casa\",\r\n        \"bairro\": \"cordeiro\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"pontoDeReferencia\": \"\"\r\n            }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				},
+				"description": "Cadastrar Cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				},
+				"description": "| **Consultar todos os Clientes** |  |\n| --- | --- |\n|  |  |"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/clientes/nome/guilherme",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/clientes/nome/guilherme",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"nome",
+						"guilherme"
+					]
+				},
+				"description": "listar cliente pelo nome"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/clientes",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Girleide\",\r\n    \"sobrenome\": \"Alves da silva\",\r\n    \"cpf\": \"654.321.123-45\",\r\n    \"dataNascimento\": \"22/08/1995\",\r\n    \"telefone\": \"8199871-2345\",\r\n    \"email\":\"girleide@gmail.com\",\r\n    \"endereco\": {\r\n        \"cep\": \"50.620-160\",\r\n        \"logradouro\": \"Rua Joaqui alheiros\",\r\n        \"numero\": \"507\",\r\n        \"complemento\": \"casa\",\r\n        \"bairro\": \"cordeiro\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"pontoDeReferencia\": \"\"\r\n            }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/clientes/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"3"
+					]
+				},
+				"description": "Atualizar cliente pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/clientes",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Girleide\",\r\n    \"sobrenome\": \"Alves da silva\",\r\n    \"cpf\": \"654.321.123-45\",\r\n    \"dataNascimento\": \"22/08/1995\",\r\n    \"telefone\": \"8199871-2345\",\r\n    \"email\":\"girleide@gmail.com\",\r\n    \"endereco\": {\r\n        \"cep\": \"50.620-160\",\r\n        \"logradouro\": \"Rua Joaqui alheiros\",\r\n        \"numero\": \"507\",\r\n        \"complemento\": \"casa\",\r\n        \"bairro\": \"cordeiro\",\r\n        \"cidade\": \"Recife\",\r\n        \"uf\": \"PE\",\r\n        \"pontoDeReferencia\": \"\"\r\n            }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/clientes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"1"
+					]
+				},
+				"description": "Deletar cliente pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/ordemservicos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\":{\r\n        \"idCliente\": 3\r\n    },\r\n    \"dataAbertura\":\"30/08/2023\",\r\n    \"descricaoProblema\": \"Passar cabo para o quarto\",\r\n    \"status\": \"PENDENTE\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ordemservicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordemservicos"
+					]
+				},
+				"description": "Abrir ordem de serviço"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/ordemservicos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ordemservicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordemservicos"
+					]
+				},
+				"description": "Consultar todas as ordens de serviços"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/ordemservicos/cliente/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"idOrdemServico\": 1,\r\n            \"cliente\":{\r\n                \"idCliente\":1\r\n            },\r\n            \"dataAbertura\": \"30/08/2023\",\r\n            \"descricaoProblema\": \"Luz WAN do roteador apagada\",\r\n            \"descricaoSolucao\": null,\r\n            \"status\": \"PENDENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ordemservicos/cliente/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordemservicos",
+						"cliente",
+						"1"
+					]
+				},
+				"description": "Buscar todas as ordens de servicos do cliente pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/ordemservicos/status/PENDENTE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ordemservicos/status/PENDENTE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordemservicos",
+						"status",
+						"PENDENTE"
+					]
+				},
+				"description": "Consultar ordens de serviços pendentes ou concluidas PENDENTE ou CONCLUIDO"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/ordemservicos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\":{\r\n        \"idCliente\": 3\r\n    },\r\n    \"dataAbertura\":\"17/09/2023\",\r\n    \"descricaoProblema\": \"Passar cabo para o quarto\",\r\n    \"status\": \"PENDENTE\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ordemservicos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordemservicos",
+						"3"
+					]
+				},
+				"description": "atualizar ordem de servico pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/ordemservicos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ordemservicos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordemservicos",
+						"4"
+					]
+				},
+				"description": "deletar ordem de servico pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/instalacoes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\": {\r\n        \"idCliente\":1\r\n    },\r\n    \"valor\": 100,\r\n    \"dataAgendada\": \"02/09/2023\",\r\n    \"status\": \"PENDENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/instalacoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"instalacoes"
+					]
+				},
+				"description": "Abrir ordem de instalação"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/instalacoes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/instalacoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"instalacoes"
+					]
+				},
+				"description": "Consultar Todas as instalações"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/instalacoes/cliente/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/instalacoes/cliente/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"instalacoes",
+						"cliente",
+						"1"
+					]
+				},
+				"description": "Listar instalação do cliente pelo id do cliente."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/instalacoes/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/instalacoes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"instalacoes",
+						"1"
+					]
+				},
+				"description": "consultar instalacao do cliente pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/instalacoes/status/PENDENTE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/instalacoes/status/PENDENTE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"instalacoes",
+						"status",
+						"PENDENTE"
+					]
+				},
+				"description": "Consultar instalacoes pendentes ou concluidas PENDENTE ou CONCLUIDO"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/instalacoes",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\": {\r\n        \"idCliente\":3\r\n    },\r\n    \"valor\": 100,\r\n    \"dataAgendada\": \"28/09/2023\",\r\n    \"status\": \"PENDENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/instalacoes/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"instalacoes",
+						"3"
+					]
+				},
+				"description": "atualizar instalacao pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/instalacoes",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\": {\r\n        \"idCliente\":3\r\n    },\r\n    \"valor\": 100,\r\n    \"dataAgendada\": \"28/09/2023\",\r\n    \"status\": \"PENDENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/instalacoes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"instalacoes",
+						"1"
+					]
+				},
+				"description": "deletar instalação pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/usuarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\":\"fabio.viturino\",\r\n    \"senha\":\"102030\",\r\n    \"status\":\"USUARIO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				},
+				"description": "Cadastrar usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				},
+				"description": "listar usuarios cadastrado"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/usuarios/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"4"
+					]
+				},
+				"description": "listar usuario pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/usuarios/4",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\":\"fabio.viturino\",\r\n    \"senha\":\"302010\",\r\n    \"status\":\"USUARIO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"4"
+					]
+				},
+				"description": "Atualizar usuario pelo id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/usuarios/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/usuarios/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"5"
+					]
+				},
+				"description": "deletra usuario pelo id"
+			},
+			"response": []
+		}
+	]
+}
