@@ -2,9 +2,20 @@
 
 O programa UserTrac é um sistema para empresas de telecomunicações, onde auxilia no gerenciamento de seus clientes, ordens de serviço, instalações e usuários. Através dele, é possível realizar diversas funções como cadastrar clientes e usuários, abrir ordens de serviço e ordens de instalação, consultar informações, atualizar dados e apagar registros.
 
-O programa permite cadastrar clientes, informando dados como nome, CPF/CNPJ, telefone, endereço, entre outros. Também é possível cadastrar usuários do sistema, como funcionários responsáveis pelo atendimento e gerenciamento das ordens.
+O programa permite cadastrar clientes, informando dados como:
+- nome
+- CPF
+- telefone
+- endereço
+- entre outros.
 
-É possível abrir ordens de serviço para os clientes já cadastrados, informando detalhes como data, tipo de serviço e descrição. Da mesma forma, é possível abrir ordens de instalação, caso necessário.
+Também é possível cadastrar usuários do sistema, como funcionários responsáveis pelo atendimento e gerenciamento das ordens.
+
+É possível abrir ordens de serviço para os clientes já cadastrados, informando detalhes como:
+- data
+- tipo de serviço e descrição.
+
+Da mesma forma, é possível abrir ordens de instalação, caso necessário.
 
 O programa possui funcionalidades de consulta, onde é possível buscar informações sobre os clientes através de seu ID ou nome. Também é possível consultar as ordens de serviço, utilizando o ID da ordem ou filtrando por status (pendente ou concluído).
 
