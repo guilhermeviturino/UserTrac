@@ -40,7 +40,7 @@ public class Usuario implements UserDetails {
     private Status status;
 
     
-
+    
     public Usuario(String login, String senha, Status status) {
         this.login = login;
         this.senha = senha;

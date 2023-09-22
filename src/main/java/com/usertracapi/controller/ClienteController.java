@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,11 +29,13 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     @GetMapping
+    @Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
     public ResponseEntity<Page<Cliente>> listarClientes(Pageable paginacao) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteRepository.findAll(paginacao));
     }
 
     @GetMapping("/{id}")
+    @Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
     public ResponseEntity<Cliente> buscarClientePeloId(@PathVariable("id") Long id) {
         Optional<Cliente> clienteExistente = clienteRepository.findById(id);
 
@@ -44,6 +47,7 @@ public class ClienteController {
     }
 
     @GetMapping("/nome/{nome}")
+    @Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
     public ResponseEntity<List<Cliente>> buscarClientePorNome(@PathVariable("nome") String nome) {
         
 
@@ -55,6 +59,7 @@ public class ClienteController {
     }
 
     @GetMapping("/cpf/{cpf}")
+    @Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
     public ResponseEntity<List<Cliente>> buscarClientePeloCpf(@PathVariable("cpf") String cpf) {
 
         if (cpf.isEmpty()) {
@@ -65,11 +70,13 @@ public class ClienteController {
     }
 
     @PostMapping
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(cliente));
     }
 
     @PutMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<Cliente> atualizarClientePeloId(@PathVariable("id") long id, @RequestBody Cliente cliente) {
         Optional<Cliente> clienteExistente = clienteRepository.findById(id);
 
@@ -87,6 +94,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<String> deletarcClientePeloId(@PathVariable("id") Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
 
