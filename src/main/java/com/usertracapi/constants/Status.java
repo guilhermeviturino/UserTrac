@@ -4,6 +4,6 @@ public enum Status {
     
     PENDENTE,
     CONCLUIDO,
-    USUARIO,
+    USER,
     ADMIN
 }

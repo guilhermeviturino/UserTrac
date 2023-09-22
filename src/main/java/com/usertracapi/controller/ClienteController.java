@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.usertracapi.model.Cliente;
 import com.usertracapi.repository.ClienteRepository;
 
+@Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
 @RestController
 @RequestMapping(value = "/clientes")
 public class ClienteController {
@@ -35,7 +36,6 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    @Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
     public ResponseEntity<Cliente> buscarClientePeloId(@PathVariable("id") Long id) {
         Optional<Cliente> clienteExistente = clienteRepository.findById(id);
 
@@ -47,7 +47,6 @@ public class ClienteController {
     }
 
     @GetMapping("/nome/{nome}")
-    @Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
     public ResponseEntity<List<Cliente>> buscarClientePorNome(@PathVariable("nome") String nome) {
         
 
@@ -59,7 +58,6 @@ public class ClienteController {
     }
 
     @GetMapping("/cpf/{cpf}")
-    @Secured({ "ROLE_ADMIN", "ROLE_USUARIO" })
     public ResponseEntity<List<Cliente>> buscarClientePeloCpf(@PathVariable("cpf") String cpf) {
 
         if (cpf.isEmpty()) {
@@ -70,13 +68,11 @@ public class ClienteController {
     }
 
     @PostMapping
-    @Secured("ROLE_ADMIN")
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(cliente));
     }
 
     @PutMapping("/{id}")
-    @Secured("ROLE_ADMIN")
     public ResponseEntity<Cliente> atualizarClientePeloId(@PathVariable("id") long id, @RequestBody Cliente cliente) {
         Optional<Cliente> clienteExistente = clienteRepository.findById(id);
 
@@ -94,7 +90,6 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    @Secured("ROLE_ADMIN")
     public ResponseEntity<String> deletarcClientePeloId(@PathVariable("id") Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
 

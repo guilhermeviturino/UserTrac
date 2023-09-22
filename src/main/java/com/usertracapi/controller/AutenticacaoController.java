@@ -38,12 +38,12 @@ public class AutenticacaoController {
 
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<UsuarioDTO> registerUser(@RequestBody @Valid UsuarioDTO usuario){
+    public ResponseEntity<String> registerUser(@RequestBody @Valid UsuarioDTO usuario){
         if(this.usuarioRepository.findByLogin(usuario.getLogin()) != null){
             return ResponseEntity.badRequest().build();
         }
         this.userService.registerUser(usuario);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("Usuário cadastrado com sucesso!");
     }
 
     @Autowired
