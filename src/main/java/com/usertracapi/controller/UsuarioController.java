@@ -28,7 +28,7 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public ResponseEntity<?> cadastrarCategoria(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
     }
 
