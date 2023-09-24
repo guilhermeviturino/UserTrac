@@ -24,5 +24,3 @@ Para facilitar a gestão, é possível atualizar informações dos clientes, com
 Da mesma forma, é possível consultar as instalações realizadas, utilizando o ID da instalação ou filtrando por seu status (pendente ou concluído). É possível realizar atualizações e apagar registros de instalações.
 
 O programa também permite listar todos os usuários cadastrados, facilitando o controle e gestão de acesso ao sistema. É possível atualizar informações dos usuários, como nome ou função, e realizar a exclusão de um usuário quando necessário.
-
-Com todas essas funcionalidades, o UserTrac se mostra como uma solução completa para auxiliar a empresa de telecomunicações a gerenciar seus clientes, ordens de serviço e instalações de forma prática e eficiente.
