@@ -2,18 +2,7 @@ package com.usertracapi.dto;
 
 import com.usertracapi.constants.Status;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class UsuarioDTO {
+public record UsuarioDTO (String login, String senha, Status status){
     
-    private String login;
-
-    private String senha;
-
-    private Status status;
+   
 }

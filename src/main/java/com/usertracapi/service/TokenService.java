@@ -23,7 +23,7 @@ public class TokenService {
     public String generateToken(Usuario usuario){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT.create().withIssuer("usertrac-api").withSubject(usuario.getLogin())
+            String token = JWT.create().withIssuer("usertracapi").withSubject(usuario.getLogin())
             .withExpiresAt(generateExpirationDate()).sign(algorithm);
             return token;
         } catch (JWTCreationException exception ) {
@@ -34,7 +34,7 @@ public class TokenService {
     public String validateToken(String token){
         try {
              Algorithm algorithm = Algorithm.HMAC256(secret);
-             return JWT.require(algorithm).withIssuer("usertrac-api").build()
+             return JWT.require(algorithm).withIssuer("usertracapi").build()
              .verify(token).getSubject();
         } catch (JWTVerificationException exception) {
             return "";

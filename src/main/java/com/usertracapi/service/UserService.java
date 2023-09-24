@@ -15,8 +15,8 @@ public class UserService  {
     private UsuarioRepository usuarioRepository;
 
     public Usuario registerUser(UsuarioDTO usuario){
-        String encryptedPassword = new BCryptPasswordEncoder().encode(usuario.getSenha());
-        Usuario user = new Usuario(usuario.getLogin(), encryptedPassword, usuario.getStatus());
+        String encryptedPassword = new BCryptPasswordEncoder().encode(usuario.senha());
+        Usuario user = new Usuario(usuario.login(), encryptedPassword, usuario.status());
         this.usuarioRepository.save(user);
         return user;
     }
