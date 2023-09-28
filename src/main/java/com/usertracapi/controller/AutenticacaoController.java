@@ -1,6 +1,5 @@
 package com.usertracapi.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +23,9 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping(value = "/auth")
 public class AutenticacaoController {
-    
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody @Valid AutenticacaoDTO dto){
+    public ResponseEntity<LoginResponse> login(@RequestBody @Valid AutenticacaoDTO dto) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(dto.login(), dto.senha());
         var auth = authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateToken((Usuario) auth.getPrincipal());
@@ -36,10 +34,9 @@ public class AutenticacaoController {
 
     }
 
-
-    @PostMapping("/cadastrar")
-    public ResponseEntity<String> registerUser(@RequestBody @Valid UsuarioDTO usuario){
-        if(this.usuarioRepository.findByLogin(usuario.login()) != null){
+    @PostMapping("/cadastro")
+    public ResponseEntity<String> registerUser(@RequestBody @Valid UsuarioDTO usuario) {
+        if (this.usuarioRepository.findByLogin(usuario.login()) != null) {
             return ResponseEntity.badRequest().build();
         }
         this.userService.registerUser(usuario);
@@ -57,5 +54,5 @@ public class AutenticacaoController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-    
+
 }
