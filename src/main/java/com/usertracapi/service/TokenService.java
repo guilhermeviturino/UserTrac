@@ -15,34 +15,43 @@ import com.usertracapi.model.Usuario;
 
 @Service
 public class TokenService {
-    
 
-    @Value("${api.security.token.secret}")
-    private String secret;
-    
-    public String generateToken(Usuario usuario){
+    public String generateToken(Usuario usuario) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT.create().withIssuer("usertracapi").withSubject(usuario.getLogin())
-            .withExpiresAt(generateExpirationDate()).sign(algorithm);
-            return token;
-        } catch (JWTCreationException exception ) {
+            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+
+            return JWT.create()
+                    .withIssuer(TOKEN_ISSUER)
+                    .withSubject(usuario.getLogin())
+                    .withExpiresAt(_expirationDate())
+                    .withClaim("id", usuario.getIdUsuario())
+                    .sign(algorithm);
+        } catch (JWTCreationException exception) {
             throw new RuntimeException("Erro ao gerar token!", exception);
         }
     }
 
-    public String validateToken(String token){
+    public String getSubject(String token) {
         try {
-             Algorithm algorithm = Algorithm.HMAC256(secret);
-             return JWT.require(algorithm).withIssuer("usertracapi").build()
-             .verify(token).getSubject();
+            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+
+            return JWT.require(algorithm)
+                    .withIssuer(TOKEN_ISSUER)
+                    .build()
+                    .verify(token)
+                    .getSubject();
         } catch (JWTVerificationException exception) {
-            return "";
+            throw new RuntimeException("Token JWT inválido ou expirado.", exception);
         }
     }
 
-    private Instant generateExpirationDate(){
+    private Instant _expirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 
+    @Value("${api.security.token.secret}")
+    private String SECRET_KEY;
+
+    @Value("${api.security.token.issuer}")
+    private String TOKEN_ISSUER;
 }
