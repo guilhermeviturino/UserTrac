@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.usertracapi.constants.Status;
 import com.usertracapi.model.Instalacao;
 import com.usertracapi.repository.InstalacaoRepository;
 
+@Secured("ROLE_ADMIN")
 @RestController
 @RequestMapping(value = "/instalacoes")
 public class InstalacacoController {
@@ -29,12 +31,14 @@ public class InstalacacoController {
     private InstalacaoRepository instalacaoRepository;
 
     @GetMapping
-    public ResponseEntity<Page<Instalacao>> Instalacoes(Pageable paginacao) {
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
+    public ResponseEntity<Page<Instalacao>> listarInstalacoes(Pageable paginacao) {
         return ResponseEntity.status(HttpStatus.OK).body(instalacaoRepository.findAll(paginacao));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Instalacao> buscarInstalacaoPeloId(@PathVariable("id") Long id) {
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
+    public ResponseEntity<Instalacao> listarInstalacaoPeloId(@PathVariable("id") Long id) {
         Optional<Instalacao> instalacaoExistente = instalacaoRepository.findById(id);
 
         if (instalacaoExistente.isPresent()) {
@@ -45,21 +49,26 @@ public class InstalacacoController {
     }
 
     @GetMapping("/cliente/{idCliente}")
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
     public List<Instalacao> obterInstalacaoDoCliente(@PathVariable("idCliente") Long idCliente) {
         return instalacaoRepository.findByCliente(idCliente);
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Instalacao>> bucerPorStatus(@PathVariable("status") Status status) {
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
+    public ResponseEntity<List<Instalacao>> listarInstalacaoPorStatus(@PathVariable("status") Status status) {
         return ResponseEntity.status(HttpStatus.OK).body(instalacaoRepository.findByStatus(status));
     }
+
+    
     @PostMapping
-    public ResponseEntity<Instalacao> cadastrarCliente(@RequestBody Instalacao instalacao) {
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
+    public ResponseEntity<Instalacao> abrirOrdemInstalacao(@RequestBody Instalacao instalacao) {
             return ResponseEntity.status(HttpStatus.CREATED).body(instalacaoRepository.save(instalacao));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Instalacao> atualizarClientePeloId(@PathVariable("id") long id, @RequestBody Instalacao instalacao) {
+    public ResponseEntity<Instalacao> atualizarInstalacaoPeloId(@PathVariable("id") long id, @RequestBody Instalacao instalacao) {
         Optional<Instalacao> instalacaoExistente = instalacaoRepository.findById(id);
         
         if (instalacaoExistente.isPresent()) {
@@ -74,7 +83,7 @@ public class InstalacacoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarcClientePeloId(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deletarcInstalacaoPeloId(@PathVariable("id") Long id) {
         Optional<Instalacao> instalacaoExistente = instalacaoRepository.findById(id);
 
         if (instalacaoExistente.isEmpty()) {

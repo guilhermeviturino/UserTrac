@@ -28,7 +28,7 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public ResponseEntity<?> cadastrarCategoria(@RequestBody Usuario usuario) {
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
     }
 
@@ -38,7 +38,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> listarPeloId(@PathVariable("id") Long id) {
+    public ResponseEntity<Usuario> listarUsuarioPeloId(@PathVariable("id") Long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
 
         if (usuario.isEmpty()) {
@@ -49,7 +49,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizarUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
+    public ResponseEntity<?> atualizarUsuarioPeloId(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
         Optional<Usuario> usuarioExistente = usuarioRepository.findById(id);
 
         if (usuarioExistente.isPresent()) {
@@ -64,7 +64,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> removerPeloId(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deletarUsuarioPeloId(@PathVariable("id") Long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
 
         if (usuario.isEmpty()) {

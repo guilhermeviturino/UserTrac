@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.usertracapi.constants.Status;
 import com.usertracapi.model.OrdemServico;
 import com.usertracapi.repository.OrdemServicoRepository;
 
+@Secured("ROLE_ADMIN")
 @RestController
 @RequestMapping(value = "/ordemservicos")
 public class OrdemServicoController {
@@ -29,11 +31,13 @@ public class OrdemServicoController {
     private OrdemServicoRepository ordemServicoRepository;
 
     @GetMapping
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
     public ResponseEntity<Page<OrdemServico>> listarOrdemServico(Pageable paginacao) {
         return ResponseEntity.status(HttpStatus.OK).body(ordemServicoRepository.findAll(paginacao));
     }
 
     @GetMapping("/{id}")
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
     public ResponseEntity<OrdemServico> buscarOrdemServicoPeloId(@PathVariable("id") Long id) {
         Optional<OrdemServico> ordemExistente = ordemServicoRepository.findById(id);
 
@@ -45,22 +49,25 @@ public class OrdemServicoController {
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<OrdemServico>> bucerPorStatus(@PathVariable("status") Status status) {
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
+    public ResponseEntity<List<OrdemServico>> bucerOrdemServicoPorStatus(@PathVariable("status") Status status) {
         return ResponseEntity.status(HttpStatus.OK).body(ordemServicoRepository.findByStatus(status));
     }
 
     @GetMapping("/cliente/{idCliente}")
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
     public List<OrdemServico> obterOrdemServicoDoCliente(@PathVariable("idCliente") Long idCliente) {
         return ordemServicoRepository.findByCliente(idCliente);
     }
 
     @PostMapping
-    public ResponseEntity<OrdemServico> cadastrarCliente(@RequestBody OrdemServico ordemServico) {
+    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
+    public ResponseEntity<OrdemServico> abrirOrdemServico(@RequestBody OrdemServico ordemServico) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ordemServicoRepository.save(ordemServico));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrdemServico> atualizarClientePeloId(@PathVariable("id") long id,
+    public ResponseEntity<OrdemServico> atualizarOrdemServicoPeloId(@PathVariable("id") long id,
             @RequestBody OrdemServico ordemServico) {
         Optional<OrdemServico> ordemExistente = ordemServicoRepository.findById(id);
 

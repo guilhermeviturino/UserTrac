@@ -15,34 +15,39 @@ import com.usertracapi.model.Usuario;
 
 @Service
 public class TokenService {
-    
 
     @Value("${api.security.token.secret}")
     private String secret;
-    
-    public String generateToken(Usuario usuario){
+
+
+    public String gerarToken(Usuario usuario) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT.create().withIssuer("usertrac-api").withSubject(usuario.getLogin())
-            .withExpiresAt(generateExpirationDate()).sign(algorithm);
+            String token = JWT.create()
+            .withIssuer("usertracapi")
+            .withSubject(usuario.getLogin())
+            .withExpiresAt(genExpirationDate())
+            .sign(algorithm);
             return token;
-        } catch (JWTCreationException exception ) {
-            throw new RuntimeException("Erro ao gerar token!", exception);
+        } catch (JWTCreationException exception) {
+            throw new RuntimeException("Token JWT inválido ou expirado.", exception);
         }
     }
 
-    public String validateToken(String token){
+    public String validateToken(String token) {
         try {
-             Algorithm algorithm = Algorithm.HMAC256(secret);
-             return JWT.require(algorithm).withIssuer("usertrac-api").build()
-             .verify(token).getSubject();
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            return JWT.require(algorithm)
+            .withIssuer("usertracapi")
+            .build()
+            .verify(token)
+            .getSubject();
         } catch (JWTVerificationException exception) {
             return "";
         }
     }
 
-    private Instant generateExpirationDate(){
+     private Instant genExpirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
-
 }

@@ -33,7 +33,7 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, length = 50, unique = true)
     private String login;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
     private String senha;
 
     @Enumerated(EnumType.STRING)
@@ -50,19 +50,19 @@ public class Usuario implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.status == Status.ADMIN)
-            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USUARIO"));
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else
-            return List.of(new SimpleGrantedAuthority("ROLE_USUARIO"));
+            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getPassword() {
-        return this.senha;
+        return senha;
     }
 
     @Override
     public String getUsername() {
-        return this.login;
+        return login;
     }
 
     @Override
